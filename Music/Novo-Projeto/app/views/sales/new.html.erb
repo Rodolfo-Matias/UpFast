@@ -1,0 +1,37 @@
+<div class="container mt-5">
+  <h1 class="text-center">UpFast</h1>
+</div>
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-4"> 
+      <%= form_with(model: @sale, local: true, html: { class: "form-inline" }) do |form| %>
+        <div class="form-group mb-3 w-100">
+          <div class="text-center" style="margin: 0 auto; max-width: 200px;"> 
+            <%= form.label :file, class: "sr-only" %>
+            <%= form.file_field :file, class: "form-control-file", style: "display: none;", id: "file-upload" %>
+            <label class="btn btn-light" for="file-upload">Escolher arquivo</label>
+          </div>
+        </div>
+
+        <div class="text-center mt-3" style="margin: 0 auto; max-width: 200px;"> 
+          <%= form.submit "Enviar", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+      <div class="text-center mt-3"> 
+        <% if flash[:alert] %>
+          <div class="alert alert-danger">
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+        
+        <% if flash[:notice] %>
+          <div class="alert alert-success">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

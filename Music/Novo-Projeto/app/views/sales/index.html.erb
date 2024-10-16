@@ -1,0 +1,48 @@
+<h1 class="text-center">Vendas</h1>
+
+<p class="lead text-center">
+  Renda Bruta Total: <%= number_to_currency(@total_income) %>
+</p>
+
+<% if params[:upload_id].present? %>
+  <p class="text-center text-info">Exibindo vendas do upload mais recente</p>
+<% end %>
+
+<div class="row justify-content-center">
+  <div class="col-md-10">
+    <% if @sales.present? %>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped mb-4">
+          <thead class="thead-dark">
+            <tr>
+              <th>Nome do Comprador</th>
+              <th>Descrição do Item</th>
+              <th>Preço do Item</th>
+              <th>Quantidade Comprada</th>
+              <th>Endereço do Comerciante</th>
+              <th>Nome do Comerciante</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @sales.each do |sale| %>
+              <tr>
+                <td><%= sale.purchaser_name %></td>
+                <td><%= sale.item_description %></td>
+                <td><%= number_to_currency(sale.item_price) %></td>
+                <td><%= sale.purchase_count %></td>
+                <td><%= sale.merchant_address %></td>
+                <td><%= sale.merchant_name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <p class="text-center">Nenhuma venda registrada.</p>
+    <% end %>
+  </div>
+</div>
+
+<div class="text-center mt-4">
+  <%= link_to 'Realizar Novo Upload', new_sale_path, class: 'btn btn-primary' %>
+</div>
